@@ -1,0 +1,7 @@
+d8cards3_config_form.configuration:
+  path: 'mymodule/config'
+  defaults:
+    _form: '\Drupal\d8cards3_config_form\Form\D8cardsConfigurationForm'
+    _title: 'D8 Cards 3 - Config Form Example'
+  requirements:
+    _permission: 'administer content'

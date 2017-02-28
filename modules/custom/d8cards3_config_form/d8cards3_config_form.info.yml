@@ -1,0 +1,5 @@
+name: Config Forms
+description: Provides a config form with 3 fields.
+package: d8cards
+type: module
+core: 8.x
