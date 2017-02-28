@@ -1,0 +1,8 @@
+id: movies
+label: Import movies
+description: Import movies data using csv
+source_type: csv
+dependencies:
+  enforced:
+    module:
+      - d8cards4_migrations

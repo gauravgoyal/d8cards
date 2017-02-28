@@ -1,0 +1,23 @@
+id: actors
+label: Actors of the movies
+migration_group: movies
+source:
+  plugin: csv
+  path: public://actors.csv
+  header_row_count: 1
+  keys:
+    - id
+process:
+  title:
+    plugin: callback
+    callable: trim
+    source: name
+  type:
+    plugin: default_value
+    default_value: 'actors'
+  uid:
+    plugin: default_value
+    default_value: 1
+destination:
+  plugin: entity:node
+

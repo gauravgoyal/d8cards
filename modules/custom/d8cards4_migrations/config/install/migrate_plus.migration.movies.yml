@@ -1,0 +1,66 @@
+id: movies
+label: Movie Data
+migration_group: movies
+source:
+  plugin: csv
+  path: public://movies.csv
+  header_row_count: 1
+  keys:
+    - id
+  column_names:
+    0:
+      id: id
+    1:
+      title: title
+    2:
+      plot: plot
+    3:
+      actors: actors
+    4:
+      genre: genre
+
+process:
+  title:
+    plugin: callback
+    callable: trim
+    source: title
+  'body/value': plot
+  'body/format':
+    plugin: default_value
+    default_value: full_html
+  field_actor:
+    -
+      plugin: explode
+      source: actors
+      delimiter: ','
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: migration
+      migration: actors
+  field_genre:
+    -
+      plugin: explode
+      source: genre
+      delimiter: '|'
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      ignore_case: true
+      lookupBundle: genre
+  type:
+    plugin: default_value
+    default_value: 'movie'
+  uid:
+    plugin: default_value
+    default_value: 1
+destination:
+  plugin: entity:node
+migration_dependencies:
+  required:
+    - actors
+
