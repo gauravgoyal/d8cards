@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Callback functions.
+ */
+
+/**
+ * Remove `the` from string given.
+ */
+function removethe($value) {
+  return str_ireplace("the", '', $value);
+}
